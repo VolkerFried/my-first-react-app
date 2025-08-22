@@ -2,10 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Home() {
+  const [count, setCount] = useState(0);
   return (
     <>
       <div>
@@ -29,7 +29,26 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
+}
+
+function Page2() {
+  return <div><h2>Page2</h2></div>;
+}
+
+function App() {
+  return (
+    <Router>
+      <nav style={{ marginBottom: '1rem' }}>
+        <Link to="/">Home</Link> |{' '}
+        <Link to="/Page2">Page2</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Page2" element={<Page2 />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App
